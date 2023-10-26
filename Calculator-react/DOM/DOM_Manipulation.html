@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Example</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>DOM Manipulation Example</h1>
+    
+    <!-- JavaScript DOM Manipulation -->
+    <div id="elementById">Element by ID</div>
+    <ul>
+        <li class="elements">Element 1</li>
+        <li class="elements">Element 2</li>
+        <li class="elements">Element 3</li>
+    </ul>
+    
+    <!-- jQuery DOM Manipulation -->
+    <button id="changeButtonText">Change Button Text</button>
+    <div id="changeBackground">Change Background</div>
+    
+    <form id="formData">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Submit</button>
+    </form>
+
+    <img id="image" src="image22.jfif" alt="Image" width="400" height="auto">
+    
+    <button id="changeImage">Change Image</button>
+    
+    <div id="parentDiv">
+        <p>This is a paragraph.</p>
+    </div>
+    
+    <button id="addTextNode">Add Text Node</button>
+    <button id="deleteNode">Delete Node</button>
+
+    <script>
+        // JavaScript DOM Manipulation
+        document.getElementById("elementById").innerHTML = "Changed by getElementById";
+        
+        var elements = document.getElementsByClassName("elements");
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].innerHTML = "Changed by getElementsByClassName";
+        }
+        
+        var box = document.querySelector(".box");
+        box.style.color = "red";
+        box.style.top = "150px";
+
+        // Change image source
+        document.getElementById("changeImage").addEventListener("click", function () {
+            var image = document.getElementById("image");
+            image.src = "image2.jpg";
+        });
+
+        // Add text node
+        document.getElementById("addTextNode").addEventListener("click", function () {
+            var parentDiv = document.getElementById("parentDiv");
+            var textNode = document.createTextNode("New text node added.");
+            parentDiv.appendChild(textNode);
+        });
+
+        // Delete node
+        document.getElementById("deleteNode").addEventListener("click", function () {
+            var parentDiv = document.getElementById("parentDiv");
+            parentDiv.removeChild(parentDiv.firstChild);
+        });
+
+        // jQuery DOM Manipulation
+        $("#changeButtonText").click(function () {
+            $("button").text("Text Changed by jQuery");
+        });
+
+        $("#changeBackground").click(function () {
+            $(this).css("background-image", "url('background.jpg')");
+        });
+
+        $("#formData").submit(function (event) {
+            event.preventDefault();
+            var formData = $(this).serializeArray();
+            console.log(formData);
+        });
+
+        $("#image").attr("alt", "New Image");
+    </script>
+</body>
+</html>
